@@ -1,51 +1,47 @@
 package botCommands;
 
 import java.awt.Color;
-import java.util.concurrent.RejectedExecutionException;
-
-import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class BotInfoCommand extends ListenerAdapter {
-		static EmbedBuilder embedBuilder;
-		
-			public void onMessageReceived(MessageReceivedEvent event) {
-			super.onMessageReceived(event);
-			String message = event.getMessage().getContentRaw();
-			if(message.equalsIgnoreCase("!info")){
-				try {
-					embedBuilder.setAuthor("dsadsa");
-					embedBuilder.setColor(Color.black);
-					
-					event.getChannel().sendMessage(embedBuilder.build()).queue();
+			EmbedCommands embeds = new EmbedCommands();
+			 
 
-				} catch (RejectedExecutionException e) {
-					e.printStackTrace();
-				}
-							}
-			
-			System.out.println("wow working");
-				
-				
-			
-			
-			
-			
-			
-			}
-					
 	
+			@Override
+			public void onMessageReceived(MessageReceivedEvent event) throws NullPointerException {
+			super.onMessageReceived(event);
+			MessageChannel channel = event.getChannel();
+			String message = event.getMessage().getContentRaw();
+			if(message.equalsIgnoreCase("!markdown")){
+				channel.sendMessage(botCommands.EmbedCommands.texts(Color.BLACK, "Markdown Commands",
+						"> Type the Following Command to know more", "```yml\n!bold\n!italic\n!underline```",
+						true).build()).queue();
+			}
+				else if (message.equalsIgnoreCase("!bold")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.PINK, "BOLD COMMAND", 
+							"``` put '**' before and after your text```")
+							.build()).queue();
+				}
+				else if (message.equalsIgnoreCase("!italic")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.CYAN, "> ITALIC COMMAND", 
+							"```put '* or _' before and after your text```")
+							.build()).queue();
+				}
 			
-				
-					
-					
-				
-				
+				else if (message.equalsIgnoreCase("!underline")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.DARK_GRAY, "> UNDERLINE COMMAND", 
+							"```put  '__' before and after your text```")
+							.build()).queue();
+				}
+			
+			
+}	
+}
+	
 		
-		
-		
-		}
 
 	
 
