@@ -1,12 +1,13 @@
 package botCommands.HiddenCommands;
 
+import java.util.concurrent.TimeUnit;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class HiddenCommands extends ListenerAdapter{
+public class HiddenCommands extends ListenerAdapter {
 		
 	@Override
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
@@ -16,10 +17,10 @@ public class HiddenCommands extends ListenerAdapter{
 		TextChannel channel = event.getChannel();
 		Message messageToBeDeleted = event.getMessage();
 		
-		
-		if (message.equalsIgnoreCase("past ni gelo kay jo")) {
-			messageToBeDeleted.delete().queue();
+		if (message.equalsIgnoreCase(">>>past ni gelo kay joanna")) {
+			messageToBeDeleted.delete().queueAfter(1, TimeUnit.MILLISECONDS);
 			EmbedBuilder build = new EmbedBuilder();
+			build.setTitle("KAUHAWAN NI ANGELO JERBAKS");
 			build.setDescription("```ini\n[ONCE UPON A TIME NUNG NAGKAGUSTO SI GELO KAY JOANNA LAGI  NA NYA ITONG STINASTALK KASAMA ANG KANYANG MABUTING "
 					+ "KABIGAN NA SI JAMES, LAGI NILA ITONG INAABANGAN SA KANTO BAGO ITO PUMASOK DAHIL SIGURO EH STALKER NGA SI GELO. HANGGAT SA"
 					+ "SI GELO AY SUMUKO DAHIL DUMATING ANG ISA PANG J SA KANYANG BUHAY]```");
@@ -30,16 +31,15 @@ public class HiddenCommands extends ListenerAdapter{
 					+ "0QttlkCq6_3RC22ShVusY-TkjYlXWodUY_a8irNJuy56FcuJSqW1RNpACG"
 					+ "&_nc_ohc=x2AjXAEw01gAX9ZxIqR&_nc_ht=scontent.fmnl6-1.fna&oh=a"
 					+ "9d0e365f6216d056dab45a87f198c71&oe=5FB85C14");
-			channel.sendMessage(build.build()).queue();
-			
-			
-		
+			channel.sendMessage(build.build()).queue((m) -> m.delete().queueAfter(750, TimeUnit.MILLISECONDS));		
+							
 		}
-		if (message.equalsIgnoreCase("past ni gelo kay jeanne")) {
-			String messageId = event.getMessageId();
-			channel.deleteMessageById(messageId).queue();
-			messageToBeDeleted.delete();
+		
+		if (message.equalsIgnoreCase(">>>past ni gelo kay jeanne")) {
+			
+			messageToBeDeleted.delete().queue();
 			EmbedBuilder build = new EmbedBuilder();
+			build.setTitle("KWENTO NG KAUHAWAN NI ANGELO JERBAKS");
 			build.setDescription("```ini\n[ONCE UPON A TIME MERON AKONG FEELING ATE TSAKA FEELING KUYA NA NAGKAGUSTO SA ISA'T ISA AT NAGTAGUAN NG FEELINGS,"
 					+ "HINDI NILA ALAM NA NAGKAKAGUSTO NA PALA SILA SA ISA'T ISA AT AYU NA NGA. NANG MATAPOS NA ANG SCHOOL YEAR NAMEN AY NAGKA AMINAN "
 					+ "ANG DALAWA NA MAY GUSTO SILA SA ISA'T ISA HANGGANG SA NAGING SILA. NGUNIT SA KASAMAANG PALAD AY PINAGPALIT SI JEANNE NI GELO "
@@ -50,10 +50,14 @@ public class HiddenCommands extends ListenerAdapter{
 					+ "jwe4Xacn59-PB6sTZd1WVh_EQpQGY9WBMvIh5L_ajJPPfNdfXfvu-tXV&_nc_oh"
 					+ "c=Fd1UzSTN9KwAX8QUwY7&_nc_ht=scontent.fmnl6-2.fna&oh=c4a86e791f"
 					+ "d5fad06654df658c23e4c8&oe=5FB5920A");
-			channel.sendMessage(build.build()).queue();
+			channel.sendMessage(build.build()).queue(m -> m.delete().queueAfter(1200, TimeUnit.MILLISECONDS));
+			
+			
 		}
 	
+	
 	}
-
-
+		
+			
+			
 }

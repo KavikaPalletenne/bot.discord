@@ -16,8 +16,8 @@ public class MemberJoin extends ListenerAdapter {
 		TextChannel channel = event.getGuild().getDefaultChannel();
 		EmbedBuilder build = new EmbedBuilder();
 		build.setColor(Color.DARK_GRAY);
-		build.setDescription(">>> Type !help to see some usefu; commands");
-		channel.sendMessage(build.build()).queue();
+		build.setDescription(">>> Type !help to see some useful commands");
+		event.getGuild().getDefaultChannel().sendMessage(build.build()).queue();
 		
 	
 	

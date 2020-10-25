@@ -1,6 +1,7 @@
 package botCommands;
 
-import java.awt.Color;
+import java.awt.Color;import java.util.concurrent.TimeUnit;
+
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -15,28 +16,59 @@ public class BotInfoCommand extends ListenerAdapter {
 			super.onMessageReceived(event);
 			MessageChannel channel = event.getChannel();
 			String message = event.getMessage().getContentRaw();
+			
+			
+			
 			if(message.equalsIgnoreCase("!markdown")){
-				channel.sendMessage(botCommands.EmbedCommands.texts(Color.BLACK, "Markdown Commands",
-						"> Type the Following Command to know more", "```yml\n!bold\n!italic\n!underline```",
+				channel.sendMessage(botCommands.EmbedCommands.texts(Color.BLACK, "> Markdown Commands",
+						"Type the Following Commands to know more", "`!bold` `\n!italic` `\n!underline` `\n!bolditalic` "
+								+ "`\n!underlineitalic` `\n!underlinebold` `\n!unerlinebolditalic` `\n!strikethrough`", 
 						true).build()).queue();
+			
+			
 			}
 				else if (message.equalsIgnoreCase("!bold")) {
-					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.PINK, "BOLD COMMAND", 
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.PINK, 
 							"``` put '**' before and after your text```")
-							.build()).queue();
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
 				}
 				else if (message.equalsIgnoreCase("!italic")) {
-					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.CYAN, "> ITALIC COMMAND", 
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.CYAN, 
 							"```put '* or _' before and after your text```")
-							.build()).queue();
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
 				}
 			
 				else if (message.equalsIgnoreCase("!underline")) {
-					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.DARK_GRAY, "> UNDERLINE COMMAND", 
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.DARK_GRAY, 
 							"```put  '__' before and after your text```")
-							.build()).queue();
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
 				}
-			
+				else if (message.equalsIgnoreCase("!bolditalic")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.ORANGE, 
+							"```put  '***' before and after your text```")
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
+				}
+				else if (message.equalsIgnoreCase("!underlineitalic")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.RED, 
+							"```put  '__*' before and after your text```")
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
+				}
+				else if (message.equalsIgnoreCase("!underbold")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.DARK_GRAY,  
+							"```put  '__**' before and after your text```")
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
+				}
+				else if (message.equalsIgnoreCase("!underlinebolditalic")) {
+					channel.sendMessage(botCommands.EmbedCommands.textsEmbedMessage(Color.DARK_GRAY, 
+							"```put  '__***' before and after your text```")
+							).queue(m -> m.delete().queueAfter(5, TimeUnit.SECONDS));
+				}
+				else if (message.equalsIgnoreCase("!help")) {
+					channel.sendMessage(botCommands.EmbedCommands.texts(Color.WHITE, "> Useful Commands", "Type the Following Commands",
+							"dds", false).build()).queue();
+					
+				}
+				
 			
 }	
 }

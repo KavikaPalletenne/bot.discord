@@ -2,6 +2,7 @@ package botCommands;
 
 import java.awt.Color;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class EmbedCommands {
 
@@ -12,9 +13,9 @@ public class EmbedCommands {
 		return new EmbedBuilder(embed).setColor(color).setDescription(description).addField(name, value, inline);
 		}
 		
-		public static EmbedBuilder textsEmbedMessage(Color color, String title, String description ) {
+		public static MessageEmbed textsEmbedMessage(Color color, String description ) {
 			embed.clearFields();
-			return new EmbedBuilder(embed).setColor(color).setTitle(title).setDescription(description);
+			return new EmbedBuilder(embed).setColor(color).setTitle("> MARKDOWN COMMAND").setDescription(description).build();
 		
 		}
 		
